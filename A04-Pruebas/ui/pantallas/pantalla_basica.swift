@@ -35,7 +35,17 @@ struct PantallaBasica: View {
                 controlador.agregar_mensajes()
             }
         
+        NavigationLink{
+            RegistrarUsuario()
+        }
+        
+        label: {
+            Text("Agregar Usuario")
+        }
+        
         Spacer()
+        
+        
     }
 }
 
