@@ -13,8 +13,8 @@ class ControladorGeneral {
     public var usuarios: [Usuario]
     
     init(){
-        mensajes = []
-        usuarios = []
+        mensajes = mensajes_falsos
+        usuarios = usuarios_falsos
     }
     
     func agregar_mensajes(){

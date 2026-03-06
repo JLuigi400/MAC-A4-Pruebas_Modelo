@@ -15,4 +15,6 @@ struct Usuario: Identifiable {
     
     let apodo: String
     let email: String
+    
+    let conectado: Bool = false
 }

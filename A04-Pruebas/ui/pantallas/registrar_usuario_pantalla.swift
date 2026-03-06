@@ -16,6 +16,8 @@ enum CampoRegistrarUsuario: String{
 
 struct RegistrarUsuario: View {
     @Environment(ControladorGeneral.self) var controlador
+    @Environment(\.dismiss) var salir
+    
     @State var nombre: String = ""
     @State var correo: String = ""
     @State var edad: String = ""
@@ -92,6 +94,7 @@ struct RegistrarUsuario: View {
         }
         
         controlador.agregar_usuario(crear_usuario())
+        salir() //Esta es la opcion de Salir de la ventana
         
         apodo = ""
         nombre = ""

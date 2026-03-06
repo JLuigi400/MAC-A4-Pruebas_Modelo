@@ -14,21 +14,33 @@ struct PantallaBasica: View {
         Text("Esta pantalla me mueve a la siguiente Opción")
         
         Spacer()
-        
-        ForEach(controlador.mensajes){ mensaje in
-            NavigationLink{
-                Text("Esta es la pantalla del \(mensaje.texto)")
-            }
-            
-            label: {
-                Text ("Aqui pulsarás para ir a ver el mensaje: \(mensaje.texto)")
-            }
-            .onAppear{
-                print("Buenos dias, so la vista de: \(mensaje)")
+        ScrollView(.horizontal){
+            LazyHStack{
+                ForEach(controlador.usuarios){ usuario in
+                    NavigationLink{
+                        Text("Esta es la pantalla del \(usuario.id)")
+                    }
+                    
+                    label: {
+                        EtiquetaUsuarioPerfil(usuario: usuario)
+                    }
+                }
             }
         }
         
         Spacer()
+        
+        ScrollView{
+            ForEach(controlador.mensajes){ mensaje in
+                NavigationLink{
+                    Text("Esta es la pantalla del \(mensaje.id_usuario)")
+                }
+                
+                label: {
+                    PrevistaMensaje(mensaje: mensaje)
+                }
+            }
+        }
         
         Text("Agregaremos un HOLA MUNDO")
             .onTapGesture {
@@ -44,7 +56,6 @@ struct PantallaBasica: View {
         }
         
         Spacer()
-        
         
     }
 }
