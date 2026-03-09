@@ -12,23 +12,30 @@ struct PrevistaMensaje: View {
     
     var body: some View {
         HStack{
-            Image(systemName: "message")
+            Image(systemName: "person.fill")
                 .resizable()
                 .scaledToFit()
-                .frame(width: 40)
+                .frame(width: 40, height: 40)
+                .padding(4)
+                .background(Color("JRPGBackground"))
+                .border(Color("JRPGBorder"), width: 2)
+                .foregroundStyle(Color("JRPGText"))
             
             VStack(alignment: .leading){
                 HStack{
                     Spacer()
                     Text("\(mensaje.id_usuario ?? "Anonimo" )")
-                        .background(Color.blue)
+                        .font(.system(.caption, design: .monospaced))
+                        .bold()
+                        .foregroundStyle(Color("JRPGAccent"))
                 }
-                .background(Color.cyan)
                 
                 Text("\(mensaje.texto)")
-                    .background(Color.yellow)
+                    .font(.system(.caption, design: .monospaced))
+                    .foregroundStyle(Color("JRPGText"))
             }
             .padding(.horizontal)
+            .jrpgWindow()
             Spacer()
         }
         .padding()
@@ -38,6 +45,7 @@ struct PrevistaMensaje: View {
                 .stroke(.black, lineWidth: 5)
         }
         .padding(20)
+        .background(Color.black.edgesIgnoringSafeArea(.all))
     }
 }
 

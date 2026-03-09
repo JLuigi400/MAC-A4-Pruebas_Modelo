@@ -13,27 +13,36 @@ struct EtiquetaUsuarioPerfil : View{
     var body: some View{
         LazyVStack{
             Text("Esta conectado")
+                .font(.system(.caption, design: .monospaced))
+                .foregroundStyle(Color.white)
+                .bold()
+            
             ZStack(alignment: .bottom){
                 Image("Luigi-Icon")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 100)
-                    .clipShape(Circle())
-                HStack{
-                    Text ("\(usuario.apodo)")
-                        .foregroundStyle(Color.green)
-                        .font(.headline)
-                    Circle()
-                        .frame(width: 15)
-                        .foregroundStyle(usuario.conectado ? Color.green : Color.red)
-                }
+                    .frame(width: 80)
+                    .border(Color.white, width: 2)
+            }
+            
+            HStack{
                 
+                Circle()
+                    .frame(width: 12)
+                    .foregroundStyle(usuario.conectado ? Color.green : Color.red)
+                    .overlay(
+                        Circle().stroke(Color.white, lineWidth: 1)
+                    )
+                    .offset(x: 4, y: 4)
+                
+                Text ("\(usuario.apodo)")
+                    .font(.system(.headline, design: .monospaced))
+                    .foregroundColor(Color("JRPGAccent"))
             }
         }
-        .padding(15)
-        .background(Color.gray)
-        .cornerRadius(15)
-        .frame(width: 200)
+        .padding(20)
+        .jrpgWindowStyle()
+        .frame(width: 225)
     }
 }
 
