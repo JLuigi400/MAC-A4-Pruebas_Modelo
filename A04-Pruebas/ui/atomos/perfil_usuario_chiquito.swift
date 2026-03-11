@@ -12,6 +12,7 @@ struct EtiquetaUsuarioPerfil : View{
     
     var body: some View{
         LazyVStack{
+            
             Text("Esta conectado")
                 .font(.system(.caption, design: .monospaced))
                 .foregroundStyle(Color.white)

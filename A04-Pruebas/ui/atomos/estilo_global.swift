@@ -28,3 +28,14 @@ extension View{
         self.modifier(JRPGWindowStyle())
     }
 }
+
+extension Text{
+    func dragonQuestStyle() -> some View{
+        self
+            .font(.system(.body, design: .monospaced))
+            .foregroundStyle(.white)
+            .padding()
+            .jrpgWindow()
+            
+    }
+}

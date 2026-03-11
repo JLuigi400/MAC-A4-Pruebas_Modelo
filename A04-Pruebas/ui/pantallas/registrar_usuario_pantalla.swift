@@ -26,55 +26,82 @@ struct RegistrarUsuario: View {
     @State var error: ErrorUI? = nil
     
     var body: some View {
-        if(error != nil){
-            Text("Hay un error, resuelvelo por favor.")
-            
-        }
         
-        VStack{
-            //TextField("Nombre: ", text: $nombre)
-            CampoTexto(
-                entrada: $nombre,
-                placeholder: "Nombre",
-                error: error,
-                id: CampoRegistrarUsuario.nombre.rawValue
-            )
-            CampoTexto(
-                entrada: $apodo,
-                placeholder: "Apodo",
-                error: error,
-                id: CampoRegistrarUsuario.apodo.rawValue
-            )
-            CampoTexto(
-                entrada: $edad,
-                placeholder: "Edad",
-                error: error,
-                id: CampoRegistrarUsuario.edad.rawValue
-            )
-            CampoTexto(
-                entrada: $correo,
-                placeholder: "Correo",
-                error: error,
-                id: CampoRegistrarUsuario.correo.rawValue,
-            )
-            //TextField("Apodo: ", text: $apodo)
-            //TextField("Edad: ", text: $edad)
-            //TextField("Correo: ", text: $correo)
+        ZStack{
+            // 1. Iniciamos con el fondo negro
+            Color.black.ignoresSafeArea()
             
-            Button(action: {
-                validar_entradas()
-            }){
+            VStack(spacing: 20){
+                // Titulo de Pantalla Estilo Dragon Quest 1
+                Text("REGISTRO DE HÉROE")
+                    .font(.system(.headline, design: .monospaced))
+                    .foregroundStyle(Color("JRPGAccent"))
+                    .padding(.bottom, 20)
                 
-                HStack{
-                    Text("Agregar Usuario")
-                    Image(systemName: "person.fill.badge.plus")
+                if let error = error{
+                    Text("¡ERROR! : \(error.error)")
+                        .font(.system(.headline, design: .monospaced))
+                        .foregroundStyle(Color.red)
+                        .jrpgWindow()
+                }
+                
+                // 2. Agrupacion de la ventana principal para mostrar al usuario
+                
+                VStack{
+                    // Nombre del usuario
+                    CampoTexto(
+                        entrada: $nombre,
+                        placeholder: "Nombre del Usuario",
+                        error: error,
+                        id: CampoRegistrarUsuario.nombre.rawValue)
+                    // Apodo del usuario
+                    CampoTexto(
+                        entrada: $apodo,
+                        placeholder: "Apodo del Usuario",
+                        error: error,
+                        id: CampoRegistrarUsuario.apodo.rawValue
+                    )
+                    // Edad del usuario
+                    CampoTexto(
+                        entrada: $edad,
+                        placeholder: "Edad",
+                        error: error,
+                        id: CampoRegistrarUsuario.edad.rawValue
+                    )
+                    // Correo del usuario
+                    CampoTexto(
+                        entrada: $correo,
+                        placeholder: "Correo",
+                        error: error,
+                        id: CampoRegistrarUsuario.correo.rawValue
+                    )
+                }
+                .jrpgWindow()
+                
+                // 3. Botón de acción
+                Button(action: {
+                validar_entrada()
+                }){
+                    HStack{
+                        Text(">")
+                        Text("Agregar Usuario")
+                        Image(systemName: "person.fill.badge.plus")
+                    }
+                    .font(.system(.body, design: .monospaced))
+                    .foregroundStyle(Color.white)
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.jrpgBorder, lineWidth: 1)
+                    )
                 }
             }
+            .padding()
         }
-        .padding()
     }
     
-    func validar_entradas(){
+    // Logica de funciones
+    func validar_entrada(){
         if(nombre.isEmpty){
             error = ErrorUI(
                 campo: CampoRegistrarUsuario.nombre.rawValue,
@@ -100,29 +127,13 @@ struct RegistrarUsuario: View {
         nombre = ""
         edad = ""
         correo = ""
-        
-        /*
-         
-         else if(edad.isEmpty){
-             error = ErrorUI(
-                 campo: "Edad",
-                 error: "Tu edad no es claro, ACLARALO", nivel_de_error: .grave_importante
-             )
-         }
-         else if(correo.isEmpty){
-             error = ErrorUI(
-                 campo: "Correo@Test.com",
-                 error: "Correo NO valido, por favor selecciona otro",
-                 nivel_de_error: .grave_importante)
-         }
-         */
-        
     }
+      
     
     func crear_usuario() -> Usuario{
         return Usuario(
             nombre: nombre,
-            edad: Int (edad)!,
+            edad: Int (edad) ?? 0,
             apodo: apodo,
             email: correo)
     }

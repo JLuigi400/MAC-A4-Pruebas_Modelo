@@ -18,7 +18,8 @@ struct PantallaBasica: View {
             LazyHStack{
                 ForEach(controlador.usuarios){ usuario in
                     NavigationLink{
-                        Text("Esta es la pantalla del \(usuario.id)")
+                        //Text("Esta es la pantalla del \(usuario.id)")
+                        PantallaPerfilUsuario(usuario: usuario)
                     }
                     
                     label: {
@@ -27,13 +28,11 @@ struct PantallaBasica: View {
                 }
             }
         }
-        
         Spacer()
-        
         ScrollView{
             ForEach(controlador.mensajes){ mensaje in
                 NavigationLink{
-                    Text("Esta es la pantalla del \(mensaje.id_usuario)")
+                    Text("Esta es la pantalla de  \(mensaje.id_usuario)")
                 }
                 
                 label: {
@@ -54,9 +53,7 @@ struct PantallaBasica: View {
         label: {
             Text("Agregar Usuario")
         }
-        
         Spacer()
-        
     }
 }
 
