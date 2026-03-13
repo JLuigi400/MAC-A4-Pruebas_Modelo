@@ -39,3 +39,13 @@ struct PantallaDetalleMensaje: View {
         .navigationBarTitleDisplayMode(.inline)
     }
 }
+
+/*
+ #Preview {
+     PantallaPerfilUsuario(usuario: usuarios_falsos[0])
+ }
+ */
+
+#Preview {
+    PantallaDetalleMensaje(mensaje: mensajes_falsos[0])
+}
