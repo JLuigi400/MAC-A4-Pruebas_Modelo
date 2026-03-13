@@ -58,7 +58,9 @@ struct PantallaPerfilUsuario: View {
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .jrpgWindow()
-                
+                /*
+                 
+                 
                 Spacer()
                 
                 VStack(alignment: .leading) {
@@ -70,6 +72,7 @@ struct PantallaPerfilUsuario: View {
                 .padding()
                 .frame(maxWidth: .infinity, minHeight: 100, alignment: .topLeading)
                 .jrpgWindow() // Tu modificador de ventana negra
+                 */
             }
             .padding()
         }

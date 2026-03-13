@@ -32,7 +32,7 @@ struct PantallaBasica: View {
         ScrollView{
             ForEach(controlador.mensajes){ mensaje in
                 NavigationLink{
-                    Text("Esta es la pantalla de  \(mensaje.id_usuario)")
+                    PantallaDetalleMensaje(mensaje: mensaje)
                 }
                 
                 label: {
